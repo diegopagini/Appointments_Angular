@@ -1,0 +1,54 @@
+<div class="card">
+  <form
+    class="card-body bg-light"
+    [formGroup]="quotesForm"
+    (ngSubmit)="submit()"
+  >
+    <h3 class="card-title text-center mb-3">Create appointment</h3>
+    <div class="form-group mb-3">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        placeholder="Enter your name"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="date">Date</label>
+      <input
+        type="date"
+        id="date"
+        formControlName="date"
+        class="form-control"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="hour">Hour</label>
+      <input
+        type="time"
+        id="hour"
+        formControlName="hour"
+        class="form-control"
+        autocomplete="off"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="symptom">Symptom</label>
+      <textarea
+        id="symptom"
+        formControlName="symptom"
+        class="form-control"
+        autocomplete="off"
+        rows="3"
+        placeholder="Enter symptoms"
+      ></textarea>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-primary">Add Appointment</button>
+    </div>
+  </form>
+</div>
