@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { createAppointment } from '../../store/actions/appointments.actions';
 import Swal from 'sweetalert2';
+import { state } from '@angular/animations';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-quotes-create',
@@ -10,7 +14,7 @@ import Swal from 'sweetalert2';
 export class QuotesCreateComponent implements OnInit {
   public quotesForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.quotesForm = this.fb.group({
       name: ['', [Validators.required]],
       date: ['', [Validators.required]],
@@ -23,6 +27,11 @@ export class QuotesCreateComponent implements OnInit {
 
   submit(): void {
     if (this.quotesForm.valid) {
+      this.store.dispatch(
+        createAppointment({
+          payload: this.quotesForm.value,
+        })
+      );
       this.quotesForm.reset();
       Swal.fire('Quote created');
     } else {
