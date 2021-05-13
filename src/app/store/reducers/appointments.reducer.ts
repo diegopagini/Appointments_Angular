@@ -4,13 +4,15 @@ import {
   loadAppointment,
 } from '../actions/appointments.actions';
 
-export const initialState = [];
+export const initialState = {
+  appointments: [],
+};
 
 const _appointmentReducer = createReducer(
   initialState,
   on(createAppointment, (state, { appointment }) => ({
     ...state,
-    appointments: appointment,
+    appointments: [...state.appointments, appointment],
   })),
   on(loadAppointment, (state) => ({
     ...state,
