@@ -7,7 +7,7 @@ const _appointmentReducer = createReducer(
   initialState,
   on(createAppointment, (state, { payload }) => ({
     ...state,
-    payload: payload,
+    appointments: payload,
   }))
 );
 

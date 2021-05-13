@@ -37,7 +37,5 @@ export class QuotesCreateComponent implements OnInit {
     } else {
       this.quotesForm.markAllAsTouched();
     }
-    console.log(this.quotesForm.value);
-    console.log(this.quotesForm.valid);
   }
 }
