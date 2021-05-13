@@ -10,7 +10,6 @@ export class AppointmentEffects {
       this.actions$.pipe(
         ofType(createAppointment),
         tap((appointment) => {
-          console.log('appointment');
           localStorage.setItem('appointment', JSON.stringify(appointment));
         })
       ),

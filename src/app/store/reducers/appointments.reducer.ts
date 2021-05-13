@@ -1,13 +1,19 @@
 import { createReducer, on } from '@ngrx/store';
-import { createAppointment } from '../actions/appointments.actions';
+import {
+  createAppointment,
+  loadAppointment,
+} from '../actions/appointments.actions';
 
-export const initialState = {};
+export const initialState = [];
 
 const _appointmentReducer = createReducer(
   initialState,
-  on(createAppointment, (state, { payload }) => ({
+  on(createAppointment, (state, { appointment }) => ({
     ...state,
-    appointments: payload,
+    appointments: appointment,
+  })),
+  on(loadAppointment, (state) => ({
+    ...state,
   }))
 );
 

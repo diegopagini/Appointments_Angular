@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createAppointment } from '../../store/actions/appointments.actions';
 import Swal from 'sweetalert2';
-import { state } from '@angular/animations';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-quotes-create',
@@ -29,7 +27,7 @@ export class QuotesCreateComponent implements OnInit {
     if (this.quotesForm.valid) {
       this.store.dispatch(
         createAppointment({
-          payload: this.quotesForm.value,
+          appointment: this.quotesForm.value,
         })
       );
       this.quotesForm.reset();

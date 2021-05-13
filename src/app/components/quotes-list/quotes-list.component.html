@@ -1,5 +1,26 @@
-<div class="card">
+<div class="card shadow-sm">
   <div class="card-body bg-light">
-    <h3 class="card-title text-center">Appointment list</h3>
+    <h3 class="card-title text-center"><i>Appointment list</i></h3>
+    <ng-container *ngIf="appointments$ | async as appointments">
+      <ng-container
+        *ngIf="(appointments | json) != ({} | json); else noAppointment"
+      >
+        <div class="card shadow-sm">
+          <!-- <div *ngFor="let quote of appointments?.appointments"> -->
+
+          {{ appointments.appointments?.name }}
+          {{ appointments.appointments?.date }}
+          {{ appointments.appointments?.hour }}
+          {{ appointments.appointments?.symptom }}
+          <!-- </div> -->
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 </div>
+
+<ng-template #noAppointment>
+  <div class="text-center mt-5 mb-5 alert alert-warning shadow-sm" role="alert">
+    <p class="mb-0">There are no appointments to show</p>
+  </div>
+</ng-template>
