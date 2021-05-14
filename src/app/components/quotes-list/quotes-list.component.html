@@ -1,27 +1,35 @@
-<div class="card shadow-sm">
+<div class="card shadow-sm animate__animated animate__fadeIn">
   <div class="card-body bg-light">
     <h3 class="card-title text-center"><i>Appointment list</i></h3>
-    <ng-container *ngIf="appointments$ | async as appointments">
-      <ng-container *ngIf="appointments.list.length >= 1; else noAppointment">
-        <ng-container *ngFor="let appointment of appointments?.list">
-          <div class="appointment shadow-sm">
-            <div class="name mt-1">
-              <i>Name:</i> <strong> {{ appointment.name }}</strong>
-            </div>
-            <div class="date mt-1">
-              <i>Date:</i> <strong> {{ appointment.date | date }}</strong>
-            </div>
-            <div class="hour mt-1">
-              <i>Hour:</i> <strong> {{ appointment.hour }}</strong>
-            </div>
-            <div class="symptom mt-1">
-              <i>Symptom:</i> <strong> {{ appointment.symptom }}</strong>
-            </div>
-            <div class="row">
-              <button class="btn btn-danger btn-block mt-2">Delete</button>
-            </div>
+    <ng-container *ngIf="list.length >= 1; else noAppointment">
+      <ng-container *ngFor="let appointmentList of list">
+        <div class="appointment shadow-sm animate__animated animate__fadeIn">
+          <div class="name mt-1">
+            <i>Name:</i>
+            <strong> {{ appointmentList.appointment?.name }}</strong>
           </div>
-        </ng-container>
+          <div class="date mt-1">
+            <i>Date:</i>
+            <strong> {{ appointmentList.appointment?.date | date }}</strong>
+          </div>
+          <div class="hour mt-1">
+            <i>Hour:</i>
+            <strong> {{ appointmentList.appointment?.hour }}</strong>
+          </div>
+          <div class="symptom mt-1">
+            <i>Symptom:</i>
+            <strong> {{ appointmentList.appointment?.symptom }}</strong>
+          </div>
+          <div class="row">
+            <button
+              class="btn btn-danger btn-block mt-4 shadow-sm"
+              aria-label="delete appoitment"
+              (click)="delete()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </ng-container>
     </ng-container>
   </div>

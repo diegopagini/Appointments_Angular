@@ -1,4 +1,12 @@
 .appointment {
+  background-color: #dadee4;
+  border-radius: 1rem;
+  margin-top: 1rem;
   padding: 1rem;
   width: 100%;
+
+  .btn {
+    text-transform: uppercase;
+    max-width: 50%;
+  }
 }

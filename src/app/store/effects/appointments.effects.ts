@@ -9,8 +9,12 @@ export class AppointmentEffects {
     () =>
       this.actions$.pipe(
         ofType(createAppointment),
-        tap((appointment) => {
-          localStorage.setItem('appointment', JSON.stringify(appointment));
+        tap((newAppointment) => {
+          const appointmentsList = JSON.parse(
+            localStorage.getItem('appointment')
+          );
+          appointmentsList.push(newAppointment);
+          localStorage.setItem('appointment', JSON.stringify(appointmentsList));
         })
       ),
     { dispatch: false }
