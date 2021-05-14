@@ -48,7 +48,12 @@
       ></textarea>
     </div>
     <div class="row">
-      <button type="submit" class="btn btn-primary" aria-label="Submit">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        aria-label="Submit"
+        [disabled]="quotesForm.invalid"
+      >
         {{ "Add Appointment" | uppercase }}
       </button>
     </div>

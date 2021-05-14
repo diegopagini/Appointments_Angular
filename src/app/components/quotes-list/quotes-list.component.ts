@@ -16,7 +16,5 @@ export class QuotesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadAppointment());
-
-    this.appointments$.subscribe(console.log);
   }
 }

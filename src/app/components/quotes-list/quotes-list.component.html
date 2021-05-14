@@ -2,18 +2,26 @@
   <div class="card-body bg-light">
     <h3 class="card-title text-center"><i>Appointment list</i></h3>
     <ng-container *ngIf="appointments$ | async as appointments">
-      <ng-container
-        *ngIf="(appointments | json) != ({} | json); else noAppointment"
-      >
-        <div class="card shadow-sm">
-          <!-- <div *ngFor="let quote of appointments?.appointments"> -->
-
-          {{ appointments.appointments?.name }}
-          {{ appointments.appointments?.date }}
-          {{ appointments.appointments?.hour }}
-          {{ appointments.appointments?.symptom }}
-          <!-- </div> -->
-        </div>
+      <ng-container *ngIf="appointments.list.length >= 1; else noAppointment">
+        <ng-container *ngFor="let appointment of appointments?.list">
+          <div class="appointment shadow-sm">
+            <div class="name mt-1">
+              <i>Name:</i> <strong> {{ appointment.name }}</strong>
+            </div>
+            <div class="date mt-1">
+              <i>Date:</i> <strong> {{ appointment.date | date }}</strong>
+            </div>
+            <div class="hour mt-1">
+              <i>Hour:</i> <strong> {{ appointment.hour }}</strong>
+            </div>
+            <div class="symptom mt-1">
+              <i>Symptom:</i> <strong> {{ appointment.symptom }}</strong>
+            </div>
+            <div class="row">
+              <button class="btn btn-danger btn-block mt-2">Delete</button>
+            </div>
+          </div>
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>
