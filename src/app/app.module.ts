@@ -9,7 +9,10 @@ import { ComponentsModule } from './components/components.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { AppointmentEffects } from './store/effects/appointments.effects';
+import {
+  createEffects,
+  deleteEffects,
+} from './store/effects/appointments.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +24,7 @@ import { AppointmentEffects } from './store/effects/appointments.effects';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([AppointmentEffects]),
+    EffectsModule.forRoot([createEffects, deleteEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

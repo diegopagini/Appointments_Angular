@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadAppointment } from '../../store/actions/appointments.actions';
+import {
+  loadAppointment,
+  deleteAppointment,
+} from '../../store/actions/appointments.actions';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-quotes-list',
@@ -9,12 +12,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./quotes-list.component.scss'],
 })
 export class QuotesListComponent implements OnInit {
-  public appointments$: Observable<any>;
-  public list = [];
+  public list: any[] = [];
 
-  constructor(private store: Store<{ appointment: any }>) {
-    this.appointments$ = store.select('appointment');
-  }
+  constructor(private store: Store<{ appointment: any }>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadAppointment());
@@ -22,7 +22,10 @@ export class QuotesListComponent implements OnInit {
     console.log(this.list);
   }
 
-  delete() {
+  delete(index) {
+    const deleted = this.list[index].appointment;
+    console.log(deleted);
+    this.store.dispatch(deleteAppointment(deleted));
     Swal.fire({
       icon: 'success',
       title: 'Your appointment has been deleted',

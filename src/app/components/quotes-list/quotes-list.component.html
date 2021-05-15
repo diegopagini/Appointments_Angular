@@ -1,8 +1,8 @@
 <div class="card shadow-sm animate__animated animate__fadeIn">
   <div class="card-body bg-light">
     <h3 class="card-title text-center"><i>Appointment list</i></h3>
-    <ng-container *ngIf="list.length >= 1; else noAppointment">
-      <ng-container *ngFor="let appointmentList of list">
+    <ng-container *ngIf="list?.length >= 1; else noAppointment">
+      <ng-container *ngFor="let appointmentList of list; let i = index">
         <div class="appointment shadow-sm animate__animated animate__fadeIn">
           <div class="name mt-1">
             <i>Name:</i>
@@ -24,7 +24,7 @@
             <button
               class="btn btn-danger btn-block mt-4 shadow-sm"
               aria-label="delete appoitment"
-              (click)="delete()"
+              (click)="delete(i)"
             >
               Delete
             </button>
