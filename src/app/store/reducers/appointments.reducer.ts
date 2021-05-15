@@ -2,7 +2,6 @@ import { createReducer, on } from '@ngrx/store';
 
 import {
   createAppointment,
-  loadAppointment,
   deleteAppointment,
 } from '../actions/appointments.actions';
 
@@ -16,12 +15,13 @@ const _appointmentReducer = createReducer(
     ...state,
     list: [...state.list, appointment],
   })),
-  on(loadAppointment, (state) => ({
+  on(deleteAppointment, (state, { id }) => ({
     ...state,
-  })),
-  on(deleteAppointment, (state, { appointment }) => ({
-    ...state,
-    list: [...state.list.filter((quote) => quote !== appointment)],
+    list: [
+      ...state.list.filter(
+        (newAppointmentList) => newAppointmentList.id !== id
+      ),
+    ],
   }))
 );
 

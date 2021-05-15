@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createAppointment } from '../../store/actions/appointments.actions';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-quotes-create',
@@ -18,6 +17,7 @@ export class QuotesCreateComponent implements OnInit {
       date: ['', [Validators.required]],
       hour: ['', [Validators.required]],
       symptom: ['', [Validators.required]],
+      id: [Math.random()],
     });
   }
 
@@ -31,7 +31,6 @@ export class QuotesCreateComponent implements OnInit {
         })
       );
       this.quotesForm.reset();
-      Swal.fire('Quote created');
     } else {
       this.quotesForm.markAllAsTouched();
     }

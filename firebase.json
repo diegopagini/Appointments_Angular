@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/citas-ngrx",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

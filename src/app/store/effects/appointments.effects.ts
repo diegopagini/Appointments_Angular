@@ -5,6 +5,7 @@ import {
   deleteAppointment,
 } from '../actions/appointments.actions';
 import { tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class createEffects {
@@ -12,19 +13,8 @@ export class createEffects {
     () =>
       this.actions$.pipe(
         ofType(createAppointment),
-        tap((newAppointment) => {
-          if (localStorage.getItem('appointment') !== null) {
-            const appointmentsList = JSON.parse(
-              localStorage.getItem('appointment')
-            );
-            appointmentsList.push(newAppointment);
-            localStorage.setItem(
-              'appointment',
-              JSON.stringify(appointmentsList)
-            );
-          } else {
-            localStorage.setItem('appointment', JSON.stringify(newAppointment));
-          }
+        tap(() => {
+          Swal.fire('Quote created');
         })
       ),
     { dispatch: false }
@@ -39,9 +29,12 @@ export class deleteEffects {
     () =>
       this.actions$.pipe(
         ofType(deleteAppointment),
-        tap((oldAppointment) => {
-          console.log('old', oldAppointment);
-          localStorage.removeItem(JSON.stringify(oldAppointment));
+        tap(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Your appointment has been deleted',
+            showConfirmButton: true,
+          });
         })
       ),
     { dispatch: false }
